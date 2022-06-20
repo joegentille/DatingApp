@@ -18,6 +18,9 @@ namespace API.Helpers
                 .ForMember(dest => dest.PhotoUrl, opt => opt.MapFrom(src => src.Photos.FirstOrDefault(x => x.IsMain).Url))  // ForMember means which property do we want to effect.
                 .ForMember(dest => dest.Age, opt => opt.MapFrom(src => src.DateOfBirth.CalculateAge()));
             CreateMap<Photo, PhotoDto>();
+
+            // Map from member to User, this is for update
+            CreateMap<MemberUpdateDto, AppUser>();
         }
     }
 }

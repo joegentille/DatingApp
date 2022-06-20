@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Member } from 'src/app/_models/member';
 import { MembersService } from 'src/app/_services/members.service';
 
@@ -8,20 +9,11 @@ import { MembersService } from 'src/app/_services/members.service';
   styleUrls: ['./member-list.component.css']
 })
 export class MemberListComponent implements OnInit {
-  members: Member[];
+  members$: Observable<Member[]>; // The dollar is to specify that is an observable
   
   constructor(private memberService: MembersService) { }
 
   ngOnInit(): void {
-    this.loadMembers();
+    this.members$ = this.memberService.getMembers();
   }
-
-  loadMembers() {
-    this.memberService.getMembers()
-      .subscribe({
-        next: (result: Member[]) => { this.members = result }
-        //error: (error: any) => { console.log(error) } NO need to handle the error because it is already taken in the interceptor
-      });
-  }
-
 }
