@@ -9,3 +9,9 @@ npm install ngx-spinner
 
 Luego en app.module.ts, agregar en Imports: NgxSpinnerModule
 
+2. 
+Installed Cloudinary from nuget package
+
+3.
+ng2-file-upload
+npm install ng2-file-upload
