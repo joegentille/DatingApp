@@ -21,6 +21,7 @@ namespace API.Helpers
 
             // Map from member to User, this is for update
             CreateMap<MemberUpdateDto, AppUser>();
+            CreateMap<RegisterDto, AppUser>();
         }
     }
 }
