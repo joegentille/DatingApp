@@ -29,12 +29,17 @@ export class ErrorInterceptor implements HttpInterceptor {
                           }
                         }
                         throw modalStateErrors.flat(); // Para no hacer array de array => Ver Test 400 validation error al cargar la web
+                      } else if(error.error.title === 'Bad Request') {
+                        this.toastr.error(error.error.title, error.status);
+                        // if(typeof(error.error) === 'object') ver si en algun momento necesite de esto en otro proyecto
+                        //this.toastr.error(error.statusText === "OK" ? "Bad Request" : error.statusText, error.status);
+                        //this.toastr.error(error.statusText, error.status);
                       } else {
-                        this.toastr.error(error.statusText === "OK" ? "Bad Request" : error.statusText, error.status);
+                        this.toastr.error(error.error, error.status);
                       }
                       break;
                     case 401:
-                      this.toastr.error(error.statusText === "OK" ? "Unauthorised" : error.statusText, error.status);
+                      this.toastr.error(error.statusText === "OK" ? "Unauthorised" : error.statusText, error.status); // Nota: revisar esto con debug, hacer ng serve y luego en debug seleccionar Launch Chrome against localhost
                       break;
                     case 404:
                       this.router.navigateByUrl('/not-found');
@@ -49,7 +54,8 @@ export class ErrorInterceptor implements HttpInterceptor {
                       break;
                   }
                 }
-                return throwError(() => new Error(error));
+                //return throwError(() => new Error(error));
+                return throwError(error);
               })
             )
   }
