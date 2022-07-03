@@ -44,3 +44,9 @@ https://www.npmjs.com/package/ngx-timeago
 npm install ngx-timeago --save
 
 when we install packages we need to be at project level: client
+
+Route resolvers:
+==================
+Root resolvers allow us to get access to the data before the component is constructed.
+
+
