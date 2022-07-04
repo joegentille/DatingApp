@@ -45,6 +45,10 @@ export class AccountService {
   }
 
   setCurrentUser(user: User) {
+    user.roles = [];
+    const roles = this.getDecodedToken(user.token).role;
+    Array.isArray(roles) ? user.roles = roles : user.roles.push(roles);
+    
     localStorage.setItem('user', JSON.stringify(user));
     this.currentUserSource.next(user);
   }
@@ -53,4 +57,9 @@ export class AccountService {
     localStorage.removeItem('user');
     this.currentUserSource.next(null);
   }
+
+  getDecodedToken(token: string) {
+    return JSON.parse(atob(token.split('.')[1])); // atob will allow us to decoode the information inside the token. The token comes in three parts: header, payload and signature (signature is the only part that is encrypted). We are intersted in the middle part which is the payload => [1]
+  }
+
 }
