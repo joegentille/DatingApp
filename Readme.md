@@ -49,4 +49,5 @@ Route resolvers:
 ==================
 Root resolvers allow us to get access to the data before the component is constructed.
 
-
+To install signalr in angular:
+npm install @microsoft/signalr
