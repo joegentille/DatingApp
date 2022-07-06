@@ -20,13 +20,13 @@ export class HomeComponent implements OnInit {
     this.registerMode = !this.registerMode;
   }
 
-  getUsers() {
-    this.http.get('https://localhost:5001/api/users')
-      .subscribe({
-        next: (result: any) => { this.usersInsideHomeComponent = result },
-        error: (error: any) => { console.log(error) }
-      });
-  }
+  // getUsers() {
+  //   this.http.get('https://localhost:5001/api/users')
+  //     .subscribe({
+  //       next: (result: any) => { this.usersInsideHomeComponent = result },
+  //       error: (error: any) => { console.log(error) }
+  //     });
+  // }
 
   //   .subscribe({
   //     next: (result: any) => { this.users = result },
